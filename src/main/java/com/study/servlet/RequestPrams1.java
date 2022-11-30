@@ -20,9 +20,15 @@ public class RequestPrams1 extends HttpServlet {
 		System.out.println(request.getMethod());
 		System.out.println(request.getRequestURI());
 		System.out.println(request.getQueryString());
-				
+		String test = request.getParameter("test");
+		String name = request.getParameter("name");
 		
-		System.out.println();
+		response.setCharacterEncoding("UTF-8");  //response header 에 담긴다.
+		response.setContentType("text/plain; charset=utf8"); //응답시에 utf8 로 바꿔라 response header 에 담긴다.
+		
+		response.getWriter().print("test: " + test );
+		response.getWriter().print("name: " + name );
+			
 		
 	}
 }

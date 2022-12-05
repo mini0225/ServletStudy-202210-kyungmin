@@ -19,3 +19,4 @@ public class Register extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/account/register.html").forward(request, response);
 	}
 }
+ 

@@ -12,4 +12,6 @@ public class User {
 	private String password;
 	private String name;
 	private String email;
+	private String roles; //ROLE_USER, ROLE_MANAGER, ROLE_ADMIN
+
 }

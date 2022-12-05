@@ -37,6 +37,7 @@ public class RegistApi extends HttpServlet {
 				.password(registerParams.get("password"))
 				.name(registerParams.get("name"))
 				.email(registerParams.get("email"))
+				.roles("ROLE_USER, ROLE_ADMIN") //ROLE_ADMIN 해놓으면 관리자 권한 생김, 실행후 admin 으로 접속시 404... ROLE_ADMIN 안하면 403
 				.build();
 		
 		accountService.register(user);

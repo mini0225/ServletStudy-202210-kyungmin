@@ -30,7 +30,7 @@ public class EncodingFilter extends HttpFilter implements Filter {
 		
 		//System.out.println(hsr.getMethod());
 		
-		if(hsr.getMethod().equalsIgnoreCase("post")) {
+		if(hsr.getMethod().equalsIgnoreCase("post")) { //method 는 http만 잇음. 그래서 위에서 다운캐스팅 시킴(HttpServletRequest hsr = (HttpServletRequest) request;)
 		
 			request.setCharacterEncoding(StandardCharsets.UTF_8.name());
 		}	

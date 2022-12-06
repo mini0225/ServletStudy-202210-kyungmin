@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<input type = "text" class = "address1"> <!-- 부산광역시 -->
+	<input type = "text" class = "address2"> <!-- 북구 -->
+	<input type = "text" class = "address3"> <!-- 금곡동 -->
+	<button type = "button" class = "submit-button">전송</button>  <!-- 전송버튼 클릭 했을때 서버로 위의 자료 서버로 넘김 -->
+	
+	
+	<script type="text/javascript">
+		const submitButton = document.querySelector(".submit-button");	
+		submitButton.onclick = () => {
+			let address = {
+				address1 :document.querySelector(".address1").value,
+				address2 :document.querySelector(".address2").value,
+				address3 :document.querySelector(".address3").value,
+			}
+			
+			//JSON.stringify();		객체(object) -> json
+			
+			//JSON.parse();			json -> 객체(object)
+			
+			$.ajax({
+				
+					async: false, 
+					type: "post",  
+					url : "/api/ajax2_sol",
+					data: {
+						jsonData : JSON.stringify(address)
+					},
+					dataType : "text",
+					
+					success : response =>{
+						
+						alert(response);
+						
+						let obj = JSON.parse(response);
+						
+						console.log(obj.address1);
+						console.log(obj.address2);
+						console.log(obj.address3);
+						
+					},
+					error: function(response) { 
+						alert("요청실패");
+					}
+			});
+									
+		};
+	
+	</script>
+</body>
+</html>

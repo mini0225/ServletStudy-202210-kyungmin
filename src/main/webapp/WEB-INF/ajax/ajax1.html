@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<input type = "text" class = "username">
+	<input type = "text" class = "password">
+	<input type = "text" class = "name">
+	<button type = "button" class = "submit-button">전송</button>  <!-- 전송버튼 클릭 했을때 서버로 위의 자료 서버로 넘김 -->
+	
+	
+	<script type="text/javascript">
+		const submitButton = document.querySelector(".submit-button");
+		
+		submitButton.onclick = () => {
+			const username = document.querySelector(".username");
+			const password = document.querySelector(".password");
+			const name = document.querySelector(".name");
+			
+			let user = {
+					username: null,
+					password: null,
+					name: null
+			};
+			
+			user.username = username.value;
+			user.password = password.value;
+			user.name = name.value;
+			
+			/*alert(`//전송시 하단의 TAB 회당 출력값 '->' 이모양??? 나옴
+username -> ${user.username}
+password -> ${user.password}
+name -> ${user.name}
+			`);*/
+			
+			let requestData ={
+					async: false,  //true 는 비동기 처리, false는 동기 처리 
+					type: "post",  //get으로 받으면 f12 로 보이는 request url 에 전부 경로 전부 다보임 post 는 안보임
+					url : "/api/ajax1",
+					data:user, //위의 let user를 받아 온다
+					dataType : "text",
+					success : response =>{
+						alert("요청성공!")
+						alert(response);
+					},
+					error: function(response) { //원래 기본형태 ->success: response 는 ....response하나 이기 때문에 변형가능........... 
+						alert("요청실패");
+					}
+			};
+			
+			$.ajax(requestData); //위의 정보로 요청을 날림 (client -> server) ->이상있으면 error호출 / 이상없으면 success
+			
+			alert("이거언제 호출됨???");  //async 에 true 인 경우 순서가 이상해짐: '비동기 처리'
+			
+			alert("데이터 전송");
+		};
+	</script>
+</body>
+</html>

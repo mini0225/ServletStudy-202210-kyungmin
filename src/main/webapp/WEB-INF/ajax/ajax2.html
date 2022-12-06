@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<input type = "text" class = "address1"> <!-- 부산광역시 -->
+	<input type = "text" class = "address2"> <!-- 북구 -->
+	<input type = "text" class = "address3"> <!-- 금곡동 -->
+	<button type = "button" class = "submit-button">전송</button>  <!-- 전송버튼 클릭 했을때 서버로 위의 자료 서버로 넘김 -->
+	
+	
+	<script type="text/javascript">
+		const submitButton = document.querySelector(".submit-button");
+		
+		submitButton.onclick = () => {
+			const address1 = document.querySelector(".address1");
+			const address2 = document.querySelector(".address2");
+			const address3 = document.querySelector(".address3");
+			
+			let address = {
+					address1: null,
+					address2: null,
+					address3: null
+			};
+			
+			address.address1 = address1.value;
+			address.address2 = address2.value;
+			address.address3 = address3.value;
+	
+			let requestData ={
+					async: false, 
+					type: "post",  
+					url : "/api/ajax2",
+					data: address, 
+					dataType : "text",
+					success : response =>{
+						alert("요청성공!")
+						alert(response);
+					},
+					error: function(response) { 
+						alert("요청실패");
+					}
+			};
+			
+			$.ajax(requestData); 
+			
+			alert("데이터 전송");
+			
+			/*alert(`
+${address.address1}  ${address.address2}  ${address.address3}
+`); */
+			
+			
+		};
+	
+	</script>
+</body>
+</html>

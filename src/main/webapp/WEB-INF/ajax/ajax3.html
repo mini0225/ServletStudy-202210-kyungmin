@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src = "http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<input type = "text" class = "phone"> <!-- 010 -->
+	<input type = "text" class = "phone"> <!-- 9988 -->
+	<input type = "text" class = "phone"> <!-- 1916 -->
+	<button type = "button" class = "submit-button">전송</button>  <!-- 전송버튼 클릭 했을때 서버로 위의 자료 서버로 넘김 -->
+	
+	
+	<script type="text/javascript">
+		const submitButton = document.querySelector(".submit-button");	
+		submitButton.onclick = () => {
+			const phones = document.querySelectorAll(".phone"); //배열로 가지고온다.
+			
+			
+			let phoneNumber = {
+				phone1 :phones[0].value,
+				phone2 :phones[1].value,
+				phone3 :phones[2].value
+			}
+			
+			/*
+			let requestData = {
+					data : JSON.stringify(phoneNumber)  // -> data : requestData 로 끝내도됨.
+					
+			}
+			*/
+			
+			$.ajax({
+				
+					async: false, 
+					type: "post",  
+					url : "/api/ajax3",
+					data: {
+						data : JSON.stringify(phoneNumber)
+					},
+					dataType : "json",
+					
+					success : response =>{
+						
+						console.log(response);
+					},
+					
+					error: function(response) { 
+						//console.log(response)
+						alert("데이터 전송 실패");
+					}
+			});
+									
+		};
+	
+	</script>
+</body>
+</html>
